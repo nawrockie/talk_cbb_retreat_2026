@@ -1,0 +1,341 @@
+%\documentclass[a4,semhelv,landscape]{seminar}
+\documentclass[landscape]{slides}
+\usepackage[left=0.2cm,top=0.2cm,right=0.2cm,bottom=0.2cm,nohead,nofoot]{geometry}
+\usepackage{graphicx}
+\usepackage[usenames]{color}
+\usepackage{verbatim}
+%\usepackage{nopageno}
+\usepackage{setspace}
+\definecolor{myred}{rgb}{0.6,0,0}
+\definecolor{myblue}{rgb}{0,0.2,0.4}
+\definecolor{mygreen}{rgb}{0,0.5,0.0}
+\definecolor{mypurple}{cmyk}{0.5,1.0,0.0,0.0}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 1 - title
+% Source: ss2-main slide 1 (updated title)
+\begin{slide}
+\begin{center}
+\large{\textbf{Viral sequence analysis and structural RNA tools at NCBI}}
+
+\normalsize
+
+Eric Nawrocki \\
+
+\medskip
+\medskip
+\medskip
+\medskip
+\medskip
+
+\small
+\begin{tabular}{c}
+Intramural Research Program\\
+National Library of Medicine\\
+National Institutes of Health\\
+\\
+\end{tabular}
+
+\vspace{0.1in}
+
+\includegraphics[width=2.5in]{figs/NIH_NLM_ABRV_2C_4-white}
+\includegraphics[width=2.5in]{figs/nlm-buildings}
+
+\end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 2 - two main areas
+% Source: ss2-main slide 2
+\begin{slide}
+\begin{center}
+\Large
+  \textbf{Two main areas of my research:}
+
+\begin{description}
+\item[1.] Viral sequence analysis tools, since 2015
+\item[2.] Structural RNA analysis tools, since 2004
+\end{description}
+
+\end{center}
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 3 - GenBank indexers / submission flow
+% Source: ss2-main slide 3
+\begin{slide}
+\begin{center}
+\large{\textbf{GenBank indexers handle incoming sequence submissions}}
+\end{center}
+
+\center{\includegraphics[width=9in]{figs/spheres-submission-schematic-1}}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 4 - VADR paper + what it is
+% Source: ss2-main slide 4
+\begin{slide}
+\begin{center}
+\includegraphics[width=10in]{figs/vadr-title-paper}
+
+\begin{itemize}
+\item general tool for reference-based annotation of viral sequences
+\item used for Norovirus and Dengue virus submissions since 2018
+\item used for SARS-CoV-2 submissions since March 2020
+\item also used manually for submissions of RSV, Mpox, measles,
+  Influenza, and more
+\end{itemize}
+
+\vfill
+\end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 5 - VADR pass/fail flow
+% Source: ss2-main slide 5
+\begin{slide}
+\begin{center}
+\large{\textbf{VADR assists GenBank indexers: \\ Each sequence \textcolor{green}{PASSes} or \textcolor{red}{FAILs}}}
+\end{center}
+
+\center{\includegraphics[width=9in]{figs/spheres-submission-schematic-2}}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 6 - VADR reference model: Dengue feature map (RNA tie-in)
+% Source: ss2-main slide 7
+% Note: point out stem_loops and ncRNA in the feature map as the RNA tie-in
+\begin{slide}
+\begin{center}
+\large{\textbf{VADR builds a reference model of a \\ RefSeq and its features}}
+\end{center}
+
+\includegraphics[width=10.5in]{figs/dengue-features}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 7 - 4-stage pipeline overview
+% Source: ss2-main slide 8
+\begin{slide}
+\begin{center}
+\large{\textbf{VADR validates and annotates each input sequence \\ using its
+  best-matching model}}
+
+\begin{itemize}
+\item Each sequence $S$ proceeds through 4 stages:
+\small
+\begin{enumerate}
+\item \textbf{Classification}
+\item \textbf{Coverage determination}
+\item \textbf{Alignment}
+\item \textbf{Protein validation}
+\end{enumerate}
+\end{itemize}
+
+\normalsize
+\emph{Different types of alerts are identified and reported at each stage}
+
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 8 - Stage 3: Alignment = Infernal/cmalign (RNA tie-in)
+% Source: ss2-main slide 14
+% Note: "Stage 3 uses Infernal's cmalign — covariance models capture RNA
+%        secondary structure, which is why VADR handles RNA elements correctly"
+\begin{slide}
+\begin{center}
+
+\includegraphics[width=10.5in]{figs/v-annotate-stage3-1}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 9 - VADR results: Norovirus and Dengue since 2018
+% Source: ss2-main slide 18
+\begin{slide}
+\begin{center}
+\normalsize{\textbf{VADR used for Norovirus and Dengue virus sequences since 2018}}
+
+\scriptsize
+\begin{tabular}{r|r|r}
+                                                  &Norovirus      &Dengue virus   \\ \hline
+length                                            &7.6Kb         &10.7Kb        \\
+\# seqs                                           &44,936          &113,211         \\
+\% seqs full length                               &5.1\%          &8.4\%          \\
+\% Ns                                             &0.5\%          &0.2\%          \\
+\% seqs with stretch of $>=50$ Ns                 &1.0\%          &0.4\%          \\
+average \% identity                               &81.6\%         &94.4\%         \\ \hline
+\multicolumn{3}{l}{} \\
+\multicolumn{3}{l}{\textbf{VADR v1.0 performance}} \\ \hline
+seconds per sequence                   &42.4           &92.6           \\
+required RAM                           &8Gb            &8Gb            \\
+total running time, CPU days           &1.1            &10.2           \\
+\end{tabular}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 10 - SARS-CoV-2 challenge (comparison table)
+% Source: ss2-main slide 20
+\begin{slide}
+\begin{center}
+\normalsize{\textbf{SARS-CoV-2 sequences differ from Norovirus and Dengue virus \\ in several ways that impact VADR processing}}
+
+\scriptsize
+\begin{tabular}{r|r|r|r}
+                                                  &Norovirus      &Dengue virus   &\textcolor{red}{SARS-CoV-2}      \\ \hline
+length                                            &7.6Kb         &10.7Kb       &\textcolor{red}{29.9Kb}        \\
+\# seqs                                           &44,936          &113,211         &\textcolor{red}{1,616,891}        \\
+\% seqs full length                               &5.1\%          &8.4\%          &\textcolor{red}{99.7\%}         \\
+\% Ns                                             &0.5\%          &0.2\%          &\textcolor{red}{1.4\%}          \\
+\% seqs with stretch of $>=50$ Ns                 &1.0\%          &0.4\%          &\textcolor{red}{38.7\%}         \\
+average \% identity                               &81.6\% &94.4\%         &\textcolor{red}{99.4\%}         \\ \hline
+\multicolumn{4}{l}{} \\
+\multicolumn{4}{l}{\textbf{VADR v1.0 performance}} \\ \hline
+seconds per sequence                   &42.4           &92.6           &\textcolor{red}{331.8}          \\
+required RAM                           &8Gb            &8Gb            &\textcolor{red}{64Gb}           \\
+total running time, CPU days           &1.1            &10.2           &\textcolor{red}{6187.6}         \\
+\end{tabular}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 11 - 1000x speedup table
+% Source: ss2-main slide 24
+\begin{slide}
+\begin{center}
+\normalsize{\textbf{VADR is now 1000-fold faster in practice for SARS-CoV-2 processing}}
+
+\scriptsize
+\begin{tabular}{lrrrrrrrr}
+            &seeded      &N           &            &            &            &secs        &hours       &speedup     \\
+VADR        &align-      &replace-    &            &\#          &required    &per         &per 100K    &vs          \\
+version     &ment?       &ment?       &glsearch?   &cpus        &RAM         &seq         &seqs        &v1.0        \\
+\hline
+& & & & & & & & \\
+v1.0         &$-$         &$-$         &$-$         &1           &64 Gb       &329.91      &9164.3      &-           \\
+& & & & & & & & \\
+\textbf{v1.4.1}&\textbf{$+$}&\textbf{$+$}&\textbf{$+$}&\textbf{8}  &\textbf{16 Gb}&\textbf{0.33}&\textbf{9.3}&\textbf{986.8}\\
+\end{tabular}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 12 - Additional VADR models (combined)
+% Source: ss2-main slides 30 + 33 (Eric's models + Greninger lab models combined)
+\begin{slide}
+\begin{center}
+  \textbf{Additional VADR models and development}
+
+\small
+\begin{tabular}{l|r|r|l|l}
+ & length & \# models & new feature(s) & author\\ \hline
+ & & & & \\
+RSV & 15Kb & 2 & alignment-based models & Eric Nawrocki \\
+ & & & & \\
+Mpox & 197Kb & 1 & minimap alignment & Eric Nawrocki \\
+ & & & & \\
+Influenza & 1-2Kb & 70 & segmented virus & Eric Nawrocki \\
+ & & & & \\
+Hepatitis A (HAV) & 7Kb & 5 & - & Jeffrey Furlong (Greninger Lab) \\
+ & & & & \\
+Measles (MeV) & 16Kb & 15 & - & Jeffrey Furlong (Greninger Lab) \\
+ & & & & \\
+Mumps (MuV) & 15Kb & 12 & - & Jeffrey Furlong (Greninger Lab) \\
+ & & & & \\
+Rubella (RuV) & 10Kb & 2 & - & Jeffrey Furlong (Greninger Lab) \\
+ & & & & \\
+Human parainfluenza (HPIV) & 15Kb & 5 & - & Jeffrey Furlong (Greninger Lab) \\
+\end{tabular}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 13 - Furlong et al 2025 paper (Greninger lab collaboration)
+% Source: ss2-main slide 34
+\begin{slide}
+\center{\includegraphics[width=10in]{figs/gren-title}}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 14 - NEW: Infernal speed improvements will benefit VADR
+% PLACEHOLDER — content to be filled in by Eric
+\begin{slide}
+\begin{center}
+\Large
+\textbf{Planned Infernal speed improvements \\ will also benefit VADR}
+\end{center}
+
+\vfill
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slide 15 - Acknowledgements
+% Source: ss2-main slide 69
+\begin{slide}
+
+\large
+\begin{center}
+\large{\textbf{Acknowledgements}} \\
+
+\normalsize
+\vspace{0.5in}
+
+\small
+\begin{tabular}{l|l|l}
+\textbf{NLM - VADR}      & \textbf{NLM - Ribovore}   & \textbf{NLM - RNA annotation} \\
+Alejandro Sch\"{a}ffer   & Alejandro Sch\"{a}ffer    &  Fran\c{c}oise Thibaud-Nissen \\
+Rodney Brister           & Ilene Mizrachi            &  Azat Badretdin \\
+Ilene Mizrachi           & Rich McVeigh              &  Terence Murphy \\
+Eneida Hatcher           & Anji Johnston             &  \\
+Linda Yankie             & Beverly Underwood         &  \\
+Vince Calhoun            & Alex Kotliarov            &  \\
+Susan Schafer            & Barbara Robbertse         & \\
+EB Dickinson             & Conrad Schoch             & \\
+& & \\ \hline
+ & & \\
+\textbf{Harvard/Janelia} & \textbf{Rfam/RNAcentral} & \textbf{NLM - leadership} \\
+Sean Eddy                &  Anton Petrov            & David Landsman \\
+Tom Jones                &  Blake Sweeney           & Richard Scheuermann  \\
+Diana Kolbe              &  Nancy Ontiveros         & Steve Sherry \\
+Travis Wheeler           &  Kelly Williams          & Kim Pruitt  \\
+Elena Rivas              &  Sam Griffith-Jones      & Jim Ostell \\
+Michael Farrar           &  Paul Gardner            & David Lipman \\
+\multicolumn{2}{l}{\textbf{Greninger Lab (Univ. of Washington)}} & \\
+\multicolumn{2}{l}{Jeffrey Furlong, Jaydee Sereewit} & \\
+\end{tabular}
+
+\vspace{0.2in}
+\includegraphics[width=2.5in]{figs/NIH_NLM_ABRV_2C_4-white}
+\includegraphics[width=2.5in]{figs/nlm-buildings}
+
+\end{center}
+
+\vfill
+
+\end{slide}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
