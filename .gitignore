@@ -1,0 +1,8 @@
+# Compiled output
+*.pdf
+*.aux
+*.log
+*.dvi
+
+# But track figure PDFs
+!figs/*.pdf
