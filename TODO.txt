@@ -1,0 +1,4 @@
+- Remove extraneous paper screenshots
+- Remove highlighting from my name for remaining paper screenshots
+- Decide whether or not to add VADR 2020 paper fig
+- Decide on infernal slides (add poster)?
